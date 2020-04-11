@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "233914929449",
+    "firebase_url": "https://smart-shopping-cart-app.firebaseio.com",
+    "project_id": "smart-shopping-cart-app",
+    "storage_bucket": "smart-shopping-cart-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233914929449:android:ab7faa270c107f6a4e6738",
+        "android_client_info": {
+          "package_name": "com.project.smartcartapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233914929449-kij372dlnjehuns23333bd2csk70ano4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.smartcartapp",
+            "certificate_hash": "a8c6cb1fb0f126fc1965f1f4d4bbf4be09c4bad6"
+          }
+        },
+        {
+          "client_id": "233914929449-6vlaedmc79g6klbk9rea28qju7cqsi78.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkXoCtYTsE2t4fn80SSrEUbZhmEsaSgL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233914929449-6vlaedmc79g6klbk9rea28qju7cqsi78.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
