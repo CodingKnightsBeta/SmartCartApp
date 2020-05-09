@@ -1,5 +1,7 @@
 package com.project.smartcartapp.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +38,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     DatabaseReference ListRef;
     private Button newListButton;
+    private String UserPhoneKey;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +47,7 @@ public class HomeFragment extends Fragment {
         ListView = inflater.inflate(R.layout.fragment_home, container, false);
 
         Paper.init(getActivity());
-        String UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
+        UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
 
         recyclerView = (RecyclerView) ListView.findViewById(R.id.list_display_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -85,6 +89,34 @@ public class HomeFragment extends Fragment {
                         intent.putExtra("listDescription", model.getDescription());
                         intent.putExtra("status", "edit");
                         startActivity(intent);
+                    }
+                });
+
+                holder.deleteListButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder alertDB = new AlertDialog.Builder(getActivity());
+                        alertDB.setTitle("Delete List?");
+                        alertDB.setMessage("Are you sure you wish to delete this list?");
+                        alertDB.setCancelable(false);
+                        alertDB.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseDatabase.getInstance().getReference().child("Shopping Lists").
+                                        child(UserPhoneKey).child(model.getLid()).removeValue();
+
+                                Toast.makeText(getActivity(), "List "+model.getLname()+" removed",Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                        alertDB.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //
+                            }
+                        });
+                        AlertDialog alertDialog = alertDB.create();
+                        alertDialog.show();
                     }
                 });
             }

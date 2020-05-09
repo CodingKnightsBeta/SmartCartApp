@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.paperdb.Paper;
 
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -199,8 +201,34 @@ public class NewListActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<ListProduct, ListProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<ListProduct, ListProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ListProductViewHolder holder, int position, @NonNull ListProduct model) {
+                    protected void onBindViewHolder(@NonNull ListProductViewHolder holder, int position, @NonNull final ListProduct model) {
                         holder.txtProductName.setText(model.getPname());
+                        holder.deleteItemButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AlertDialog.Builder alertDB = new AlertDialog.Builder(NewListActivity.this);
+                                alertDB.setTitle("Remove Product?");
+                                alertDB.setMessage("Are you sure you wish to remove the product from list?");
+                                alertDB.setCancelable(false);
+                                alertDB.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        FirebaseDatabase.getInstance().getReference().child("Shopping Lists").
+                                                child(UserPhoneKey).child(currentList).child("products").child(model.getPid()).removeValue();
+                                        Toast.makeText(NewListActivity.this, model.getPname()+" removed from list",Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                                alertDB.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //
+                                    }
+                                });
+                                AlertDialog alertDialog = alertDB.create();
+                                alertDialog.show();
+                            }
+                        });
                     }
 
                     @NonNull
