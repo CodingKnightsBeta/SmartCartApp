@@ -6,11 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/products_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        app:queryHint="Search Products"
+        android:background="#CAFFFF"
+        >
+
+    </androidx.appcompat.widget.SearchView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:layout_below="@id/products_search_view">
 
     </androidx.recyclerview.widget.RecyclerView>
 

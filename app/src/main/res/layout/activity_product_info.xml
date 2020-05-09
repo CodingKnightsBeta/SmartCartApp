@@ -48,14 +48,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/product_details_description"
+            android:id="@+id/product_details_description_label"
             android:layout_marginTop="30dp"
-            android:padding="20dp"
             android:text="Product description"
-            android:textStyle="italic"
+            android:textStyle="bold"
             android:textSize="25sp"
+
             android:layout_below="@+id/product_details_price"
             />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/product_details_description"
+            android:paddingBottom="20dp"
+            android:text="Product description"
+            android:textColor="#0000FF"
+            android:textStyle="italic"
+            android:textSize="25sp"
+            android:layout_below="@+id/product_details_description_label"
+        />
+
     </RelativeLayout>
 
     <Button

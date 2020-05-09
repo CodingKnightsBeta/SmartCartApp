@@ -2,7 +2,10 @@ package com.project.smartcartapp.ViewHolder;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.project.smartcartapp.Interface.ItemClickListner;
@@ -15,6 +18,9 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
     public TextView txtProductName, txtProductDescription, txtProductPrice;
     public ImageView imageView;
+    public RelativeLayout productInfoRelativeLayout;
+    public Button addToListButton;
+
     public ItemClickListner listner;
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -22,7 +28,8 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         txtProductName = (TextView) itemView.findViewById(R.id.product_name);
         txtProductPrice = (TextView) itemView.findViewById(R.id.product_price);
         txtProductDescription = (TextView) itemView.findViewById(R.id.product_description);
-
+        productInfoRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.product_relative_layout);
+        addToListButton = (Button) itemView.findViewById(R.id.direct_add_to_list_button);
     }
     public void setItemClickListner(ItemClickListner listner){
         this.listner = listner;

@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -81,10 +82,10 @@ public class LoginActivity extends AppCompatActivity {
         String password = InputPassword.getText().toString();
 
         if(TextUtils.isEmpty(phone)){
-            Toast.makeText(this,"Please enter your phone number",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter your password",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Please enter your password",Toast.LENGTH_SHORT).show();
         }
         else{
             loadingBar.setTitle("Account Login");
@@ -93,7 +94,6 @@ public class LoginActivity extends AppCompatActivity {
             loadingBar.show();
 
             //Background process of creating account
-
             AllowAccessToAccount(phone,password);
 
 
@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         if(rememberMe.isChecked()){
             Paper.book().write(Prevalent.UserPhoneKey,phone);
             Paper.book().write(Prevalent.UserPasswordKey,password);
+            Paper.book().write(Prevalent.currentList,"");
         }
 
         final DatabaseReference RootRef;
@@ -117,16 +118,16 @@ public class LoginActivity extends AppCompatActivity {
                     Users usersData = dataSnapshot.child(parentDbName).child(phone).getValue(Users.class);
                     if(usersData.getPhone().equals(phone)){
                         if(usersData.getPassword().equals(password)){
-                            if(parentDbName.equals("Admins")){
-                                Toast.makeText(LoginActivity.this, "Welcome Administrator "+usersData.getName()+" ...", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-                                Intent intent = new Intent(LoginActivity.this,AdminCategoryActivity.class);
-                                startActivity(intent);
-                            }
-                            else if(parentDbName.equals("Users")){
+//                            if(parentDbName.equals("Admins")){
+//                                Toast.makeText(LoginActivity.this, "Welcome Administrator "+usersData.getName()+" ...", Toast.LENGTH_SHORT).show();
+//                                loadingBar.dismiss();
+//                                Intent intent = new Intent(LoginActivity.this,AdminCategoryActivity.class);
+//                                startActivity(intent);
+//                            }
+                            if(parentDbName.equals("Users")){
                                 Toast.makeText(LoginActivity.this, "Welcome "+usersData.getName()+" ...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                                 startActivity(intent);
                             }
                         }

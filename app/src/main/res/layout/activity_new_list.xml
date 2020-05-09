@@ -1,25 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewListActivity"
-    android:scrollbars="vertical">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+    tools:context=".NewListActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/create_list_title"
+            android:text="Create List"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#E0FFE0"
+            android:background="@color/dark"
+        />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/linear_list"
             android:orientation="vertical"
+            android:layout_below="@+id/create_list_title"
+            android:layout_marginBottom="20dp"
+            android:background="#E0FFE0"
             >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_name_label"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="List Name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_name_input"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_description_label"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="List Description"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_description_input"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="10dp"
+                />
 
         </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/add_list_recycler"
+        android:layout_below="@id/linear_list"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_above="@+id/add_product_to_list_button"
+        />
 
-    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_product_to_list_button"
+        android:layout_above="@id/start_shopping_button"
+        android:layout_margin="20dp"
+        android:text="Add More Products"
+        android:textAllCaps="false"
+        android:textSize="25dp"
+        android:background="#8888FF"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_shopping_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Start Shopping"
+        android:textAllCaps="false"
+        android:textSize="25dp"
+        android:background="#FF88FF"
+        />
 
-</ScrollView>
+
+</RelativeLayout>

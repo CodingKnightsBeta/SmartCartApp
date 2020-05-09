@@ -50,13 +50,13 @@ public class RegisterActivity extends AppCompatActivity {
         String password = InputPassword.getText().toString();
 
         if(TextUtils.isEmpty(name)){
-            Toast.makeText(this,"Please enter your name",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Please enter your name",Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(phone)){
-            Toast.makeText(this,"Please enter your phone number",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter your password",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Please enter your password",Toast.LENGTH_SHORT).show();
         }
         else{
             loadingBar.setTitle("Register Account");
@@ -66,9 +66,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             //Background process of creating account
             ValidatePhoneNumber(name, phone, password);
-
-
-
 
         }
 
@@ -87,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userDataMap.put("name",name);
                     userDataMap.put("password",password);
 
-                    RootRef.child("Admins").child(phone).updateChildren(userDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Users").child(phone).updateChildren(userDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){

@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 loadingBar.show();
             }
         }
-    }
 
+}
     private void AllowAccess(final String phone, final String password) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();

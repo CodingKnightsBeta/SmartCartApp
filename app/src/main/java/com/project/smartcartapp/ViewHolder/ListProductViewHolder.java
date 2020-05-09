@@ -7,18 +7,14 @@ import com.project.smartcartapp.Interface.ItemClickListner;
 import com.project.smartcartapp.R;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ListsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    public TextView txtListName, txtListDescription;
-    public CardView listCard;
+public class ListProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public TextView txtProductName;
     public ItemClickListner listner;
-    public ListsViewHolder(@NonNull View itemView) {
+    public ListProductViewHolder(@NonNull View itemView) {
         super(itemView);
-        txtListName = (TextView) itemView.findViewById(R.id.list_name);
-        txtListDescription = (TextView) itemView.findViewById(R.id.list_description);
-        listCard = (CardView) itemView.findViewById(R.id.list_item_card);
+        txtProductName = (TextView) itemView.findViewById(R.id.product_list_item);
 
     }
     public void setItemClickListner(ItemClickListner listner){
@@ -29,6 +25,5 @@ public class ListsViewHolder extends RecyclerView.ViewHolder implements View.OnC
         listner.onClick(v, getAdapterPosition(),false);
     }
 
+
 }
-
-
