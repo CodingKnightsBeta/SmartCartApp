@@ -102,11 +102,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void AllowAccessToAccount(final String phone, final String password) {
 
-        if(rememberMe.isChecked()){
+        //if(rememberMe.isChecked()){
             Paper.book().write(Prevalent.UserPhoneKey,phone);
             Paper.book().write(Prevalent.UserPasswordKey,password);
             Paper.book().write(Prevalent.currentList,"");
-        }
+        //}
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();

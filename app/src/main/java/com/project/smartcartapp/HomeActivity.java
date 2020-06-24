@@ -83,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
                     list = new ArrayList<>();
                     for(DataSnapshot data: dataSnapshot.getChildren()){
                         list.add(data.getValue(Products.class));
+
                     }
 
                     ProductsAdapter adapter = new ProductsAdapter(list, HomeActivity.this);
@@ -115,6 +116,7 @@ public class HomeActivity extends AppCompatActivity {
                 ProductsAdapter adapter = new ProductsAdapter(productList, HomeActivity.this);
                 recyclerView.setAdapter(adapter);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

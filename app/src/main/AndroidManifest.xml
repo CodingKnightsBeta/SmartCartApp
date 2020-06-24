@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RecommendationsActivity"></activity>
+        <activity android:name=".Recommend" />
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".NewListActivity" />
         <activity android:name=".ProductCategoriesActivity" />
         <activity android:name=".ProductInfoActivity" />

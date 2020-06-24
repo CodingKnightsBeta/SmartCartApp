@@ -17,11 +17,13 @@ import io.paperdb.Paper;
 
 import com.project.smartcartapp.MainActivity;
 import com.project.smartcartapp.R;
+import com.project.smartcartapp.Recommend;
+import com.project.smartcartapp.RecommendationsActivity;
 
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
-    private Button logout;
+    private Button logout, ViewRecommendation, GenerateRules;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class NotificationsFragment extends Fragment {
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         logout = (Button) root.findViewById(R.id.log_out_button);
+        ViewRecommendation = (Button) root.findViewById(R.id.recommendations_btn);
+        GenerateRules = (Button) root.findViewById(R.id.generate_rules_btn);
         return root;
 
 
@@ -37,6 +41,20 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        ViewRecommendation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RecommendationsActivity.class);
+                startActivity(intent);
+            }
+        });
+        GenerateRules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Recommend.class);
+                startActivity(intent);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecommendationsActivity">
+
+    <TextView
+        android:id="@+id/recc_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:background="#AAFFFF"
+        android:text="Recommendations"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recc_recycler"
+        android:layout_below="@id/recc_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/recc_title"
+        android:id="@+id/recc_status"
+        android:visibility="invisible"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:textAlignment="center"
+        android:paddingTop="270dp"
+        android:textSize="26sp"
+        android:textColor="#FF4444"
+     />
+
+</RelativeLayout>

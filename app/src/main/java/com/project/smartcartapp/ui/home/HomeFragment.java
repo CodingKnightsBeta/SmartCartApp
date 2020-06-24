@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,9 +103,11 @@ public class HomeFragment extends Fragment {
                         alertDB.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if(Paper.book().read(Prevalent.currentList).equals(model.getLname())){
+                                    Paper.book().write(Prevalent.currentList,"");
+                                }
                                 FirebaseDatabase.getInstance().getReference().child("Shopping Lists").
                                         child(UserPhoneKey).child(model.getLid()).removeValue();
-
                                 Toast.makeText(getActivity(), "List "+model.getLname()+" removed",Toast.LENGTH_SHORT).show();
 
                             }
