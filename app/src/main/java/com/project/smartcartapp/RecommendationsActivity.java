@@ -165,31 +165,6 @@ public class RecommendationsActivity extends AppCompatActivity {
     }
 
 
-
-//        DatabaseReference ListRef = FirebaseDatabase.getInstance().getReference().child("Shopping List");
-//        FirebaseDatabase database = ListRef.getDatabase();
-//        ArrayList<String> prodList = new ArrayList<>();
-//
-//        ListRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Log.d("Nproducts",dataSnapshot.child(currentUserPhone).child(currentList).child("products").getChildrenCount()+" r1");
-//                Log.d("Nproducts",dataSnapshot.child(currentUserPhone).getChildrenCount()+" r2");
-//                Log.d("Nproducts",dataSnapshot.child(currentUserPhone).child(currentList).getChildrenCount()+" r3");
-//
-//                for(DataSnapshot prod: dataSnapshot.child("products").getChildren()){
-//                    prodList.add(""+prod.getKey());
-//                    Log.d("Nproducts",prod.getKey());
-//                }
-//                Log.d("products",""+prodList);
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
     public void viewProductDetails(String pid){
         Intent intent = new Intent(RecommendationsActivity.this, ProductInfoActivity.class);
         intent.putExtra("pid", pid);

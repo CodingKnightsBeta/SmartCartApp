@@ -33,9 +33,8 @@ public class NotificationsFragment extends Fragment {
         logout = (Button) root.findViewById(R.id.log_out_button);
         ViewRecommendation = (Button) root.findViewById(R.id.recommendations_btn);
         GenerateRules = (Button) root.findViewById(R.id.generate_rules_btn);
+        GenerateRules.setVisibility(View.INVISIBLE);
         return root;
-
-
     }
 
     @Override
