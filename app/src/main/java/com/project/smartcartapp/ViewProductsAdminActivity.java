@@ -11,33 +11,26 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.project.smartcartapp.Model.Products;
 import com.project.smartcartapp.Prevalent.Prevalent;
-import com.project.smartcartapp.ViewHolder.ProductViewHolder;
+import com.project.smartcartapp.ViewHolder.AdminProductsAdapter;
 import com.project.smartcartapp.ViewHolder.ProductsAdapter;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class HomeActivity extends AppCompatActivity {
+public class ViewProductsAdminActivity extends AppCompatActivity {
 
     private SearchView searchView;
     private Query ProductRef;
@@ -51,23 +44,22 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        String category = getIntent().getStringExtra("category");
+        setContentView(R.layout.activity_view_products_admin);
 
         Paper.init(this);
         currentList = Paper.book().read(Prevalent.currentList).toString();
         currentUserPhone = Paper.book().read(Prevalent.UserPhoneKey).toString();
         loadingBar = new ProgressDialog(this);
 
-        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products").orderByChild("category").equalTo(category);
+        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        searchView = findViewById(R.id.products_search_view);
-        recyclerView = findViewById(R.id.recycler_menu);
+        searchView = findViewById(R.id.view_products_search_view);
+        recyclerView = findViewById(R.id.view_products_recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        ProductsAdapter adapter = new ProductsAdapter(new ArrayList<Products>(), HomeActivity.this);
+        AdminProductsAdapter adapter = new AdminProductsAdapter(new ArrayList<Products>(), ViewProductsAdminActivity.this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -85,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     }
 
-                    ProductsAdapter adapter = new ProductsAdapter(list, HomeActivity.this);
+                    AdminProductsAdapter adapter = new AdminProductsAdapter(list, ViewProductsAdminActivity.this);
                     recyclerView.setAdapter(adapter);
 
                 }
@@ -112,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
                         productList.add(product);
                     }
                 }
-                ProductsAdapter adapter = new ProductsAdapter(productList, HomeActivity.this);
+                AdminProductsAdapter adapter = new AdminProductsAdapter(productList, ViewProductsAdminActivity.this);
                 recyclerView.setAdapter(adapter);
             }
 
@@ -124,53 +116,4 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public void viewProductDetails(String pid){
-        Intent intent = new Intent(HomeActivity.this, ProductInfoActivity.class);
-        intent.putExtra("pid", pid);
-        startActivity(intent);
-    }
-
-
-    public static void addProductToList(final String pid, final String pname, final String section, final Context context) {
-        final DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference();
-
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if(!(dataSnapshot.child("Shopping Lists").child(currentUserPhone).child(currentList).child("products").exists())){
-
-                    HashMap<String,Object> ListProductDataMap = new HashMap<>();
-                    ListProductDataMap.put("pid",pid);
-                    ListProductDataMap.put("pname",pname);
-                    ListProductDataMap.put("section",section);
-
-                    RootRef.child("Shopping Lists").child(currentUserPhone).child(currentList).child("products").child(pid).updateChildren(ListProductDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-
-                                Toast.makeText(context,"Product Added to List",Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-                            }
-                            else {
-                                loadingBar.dismiss();
-                                Toast.makeText(context,"Network Error",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-//                else{
-//                    Toast.makeText(HomeActivity.this,"Product Already Exists in List",Toast.LENGTH_SHORT).show();
-//                    loadingBar.dismiss();
-//                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 }
-

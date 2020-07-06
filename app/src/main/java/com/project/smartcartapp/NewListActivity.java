@@ -87,6 +87,7 @@ public class NewListActivity extends AppCompatActivity {
         if(status.equals("new")){
             title.setText("New List");
             recyclerView.setVisibility(View.INVISIBLE);
+            startShoppingButtton.setVisibility(View.INVISIBLE);
             query = FirebaseDatabase.getInstance().getReference().child("Shopping Lists").child("6767676767").child("1").child("products");
             addProductsButton.setText("Add Products");
         }

@@ -16,15 +16,17 @@ import androidx.lifecycle.ViewModelProviders;
 import io.paperdb.Paper;
 
 import com.project.smartcartapp.AddProductActivity;
+import com.project.smartcartapp.AdminActivity;
 import com.project.smartcartapp.MainActivity;
 import com.project.smartcartapp.R;
 import com.project.smartcartapp.Recommend;
 import com.project.smartcartapp.RecommendationsActivity;
+import com.project.smartcartapp.ViewProductsAdminActivity;
 
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
-    private Button logout, ViewRecommendation, GenerateRules, goToAddProducts;
+    private Button logout, ViewRecommendation, admin_panel_btn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -32,10 +34,9 @@ public class NotificationsFragment extends Fragment {
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         logout = (Button) root.findViewById(R.id.log_out_button);
+        admin_panel_btn = (Button) root.findViewById(R.id.go_to_admin_btn);
         ViewRecommendation = (Button) root.findViewById(R.id.recommendations_btn);
-        GenerateRules = (Button) root.findViewById(R.id.generate_rules_btn);
-        goToAddProducts = (Button) root.findViewById(R.id.add_products_page_btn);
-        GenerateRules.setVisibility(View.INVISIBLE);
+
         return root;
     }
 
@@ -49,20 +50,15 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        GenerateRules.setOnClickListener(new View.OnClickListener() {
+
+        admin_panel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Recommend.class);
+                Intent intent = new Intent(getActivity(), AdminActivity.class);
                 startActivity(intent);
             }
         });
-        goToAddProducts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddProductActivity.class);
-                startActivity(intent);
-            }
-        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -23,22 +23,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/generate_rules_btn"
-        android:layout_below="@id/recommendations_btn"
+        android:id="@+id/go_to_admin_btn"
+        android:layout_above="@id/log_out_button"
         android:layout_margin="40dp"
-        android:text="Generate Rules"
-        android:textSize="25sp"
-        android:background="#F8FF7F"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_products_page_btn"
-        android:layout_below="@id/generate_rules_btn"
-        android:layout_margin="20dp"
-        android:text="Add Products"
-        android:textSize="25sp"
-        android:background="#88FFFF"
+        android:text="Admin Panel"
+        android:textSize="22sp"
+        android:background="@drawable/input_design"
         />
 
     <Button

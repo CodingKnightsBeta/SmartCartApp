@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminActivity">
+
+    <TextView
+        android:id="@+id/admin_page_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Admin Panel"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="#FFF"
+        android:background="#00000F"
+        android:padding="8dp"
+        android:textStyle="bold"
+        />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_products_page_btn"
+        android:layout_below="@id/admin_page_title"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Add Products"
+        android:textSize="25sp"
+        android:background="@drawable/input_design"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_products_admin_btn"
+        android:layout_below="@id/add_products_page_btn"
+        android:layout_margin="40dp"
+        android:text="View Products"
+        android:textSize="25sp"
+        android:background="@drawable/input_design"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/generate_rules_btn"
+        android:layout_below="@id/view_products_admin_btn"
+        android:layout_margin="40dp"
+        android:text="Generate Rules"
+        android:textSize="25sp"
+        android:background="@drawable/input_design"
+        />
+</RelativeLayout>
