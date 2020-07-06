@@ -178,7 +178,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    public static void addProductToList(final String pid, final String pname, final Context context) {
+    public static void addProductToList(final String pid, final String pname, final String section, final Context context) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -190,6 +190,7 @@ public class HomeActivity extends AppCompatActivity {
                     HashMap<String,Object> ListProductDataMap = new HashMap<>();
                     ListProductDataMap.put("pid",pid);
                     ListProductDataMap.put("pname",pname);
+                    ListProductDataMap.put("section",section);
 
                     RootRef.child("Shopping Lists").child(currentUserPhone).child(currentList).child("products").child(pid).updateChildren(ListProductDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

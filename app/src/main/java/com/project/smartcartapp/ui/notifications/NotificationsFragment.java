@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import io.paperdb.Paper;
 
+import com.project.smartcartapp.AddProductActivity;
 import com.project.smartcartapp.MainActivity;
 import com.project.smartcartapp.R;
 import com.project.smartcartapp.Recommend;
@@ -23,7 +24,7 @@ import com.project.smartcartapp.RecommendationsActivity;
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
-    private Button logout, ViewRecommendation, GenerateRules;
+    private Button logout, ViewRecommendation, GenerateRules, goToAddProducts;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class NotificationsFragment extends Fragment {
         logout = (Button) root.findViewById(R.id.log_out_button);
         ViewRecommendation = (Button) root.findViewById(R.id.recommendations_btn);
         GenerateRules = (Button) root.findViewById(R.id.generate_rules_btn);
+        goToAddProducts = (Button) root.findViewById(R.id.add_products_page_btn);
         GenerateRules.setVisibility(View.INVISIBLE);
         return root;
     }
@@ -54,6 +56,13 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        goToAddProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddProductActivity.class);
+                startActivity(intent);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,5 +71,6 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
     }
 }

@@ -82,7 +82,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.produc
                     HomeActivity.loadingBar.setMessage("Adding " + list.get(position).getPname() + " to list" + Paper.book().read(Prevalent.currentList).toString());
                     HomeActivity.loadingBar.setCanceledOnTouchOutside(false);
                     HomeActivity.loadingBar.show();
-                    HomeActivity.addProductToList(list.get(position).getPid(),list.get(position).getPname(), context);
+                    HomeActivity.addProductToList(list.get(position).getPid(),list.get(position).getPname(),list.get(position).getSection(), context);
                 }
 
             }

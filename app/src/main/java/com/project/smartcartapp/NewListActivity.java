@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +34,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.project.smartcartapp.Model.ListProduct;
 import com.project.smartcartapp.Model.Lists;
+import com.project.smartcartapp.Model.Products;
 import com.project.smartcartapp.Prevalent.Prevalent;
 import com.project.smartcartapp.ViewHolder.ListProductViewHolder;
 import com.project.smartcartapp.ViewHolder.ListsViewHolder;
 import com.project.smartcartapp.ViewHolder.ProductViewHolder;
+import com.project.smartcartapp.ViewHolder.ProductsAdapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NewListActivity extends AppCompatActivity {
@@ -53,7 +57,9 @@ public class NewListActivity extends AppCompatActivity {
     private EditText lName, lDescription;
     private Button addProductsButton, startShoppingButtton;
 
-    private String status, UserPhoneKey,currentList="1";
+    private ArrayList<ListProduct> listProductArrayList;
+
+    private String status, UserPhoneKey,currentList="1", listName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +121,29 @@ public class NewListActivity extends AppCompatActivity {
         startShoppingButtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listName = lName.getText().toString();
                 Toast.makeText(NewListActivity.this, "Map activity will be displayed",Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(NewListActivity.this,MenuActivity.class);
-//                startActivity(intent);
+
+                listRef = FirebaseDatabase.getInstance().getReference().child("Shopping Lists").child(UserPhoneKey).child(listName).child("products");
+
+                listRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            listProductArrayList = new ArrayList<>();
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                listProductArrayList.add(data.getValue(ListProduct.class));
+                            }
+                        }
+                        for(ListProduct prod: listProductArrayList){
+                            Log.d("Product",""+ prod.getPname()+ "  Section: "+prod.getSection());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) { }
+                });
+                Log.d("array",""+listProductArrayList);
             }
         });
 

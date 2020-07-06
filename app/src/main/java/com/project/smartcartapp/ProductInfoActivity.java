@@ -36,7 +36,7 @@ public class ProductInfoActivity extends AppCompatActivity {
     private TextView pname, price, description;
 
     private String pid = "";
-    private String productName, currentList, currentUserPhone;
+    private String productName, section, currentList, currentUserPhone;
     public ProgressDialog loadingBar;
 
 
@@ -84,7 +84,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                     loadingBar.setMessage("Adding " + productName + " to list" + currentList);
                     loadingBar.setCanceledOnTouchOutside(false);
                     loadingBar.show();
-                    addProductToList(pid, productName);
+                    addProductToList(pid, productName, section);
                 }
             }
         });
@@ -104,6 +104,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                     price.setText("Price : "+product.getPrice()+" Rs.");
                     description.setText(product.getDescription());
                     productName = product.getPname();
+                    section = product.getSection();
                     Picasso.get().load(product.getImage()).into(productImage);
                 }
             }
@@ -115,7 +116,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void addProductToList(final String pid,final String pname) {
+    private void addProductToList(final String pid,final String pname, final String section) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -127,6 +128,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                     HashMap<String,Object> ListProductDataMap = new HashMap<>();
                     ListProductDataMap.put("pid",pid);
                     ListProductDataMap.put("pname",pname);
+                    ListProductDataMap.put("section",section);
 
                     RootRef.child("Shopping Lists").child(currentUserPhone).child(currentList).child("products").child(pid).updateChildren(ListProductDataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

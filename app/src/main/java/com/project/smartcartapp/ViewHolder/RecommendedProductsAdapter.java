@@ -80,7 +80,7 @@ public class RecommendedProductsAdapter extends RecyclerView.Adapter<Recommended
                     RecommendationsActivity.loadingBar.setMessage("Adding " + list.get(position).getPname() + " to list" + Paper.book().read(Prevalent.currentList).toString());
                     RecommendationsActivity.loadingBar.setCanceledOnTouchOutside(false);
                     RecommendationsActivity.loadingBar.show();
-                    RecommendationsActivity.addProductToList(list.get(position).getPid(),list.get(position).getPname(), context);
+                    RecommendationsActivity.addProductToList(list.get(position).getPid(),list.get(position).getPname(),list.get(position).getSection(),context);
                 }
 
             }

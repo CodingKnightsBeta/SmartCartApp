@@ -55,7 +55,6 @@ public class Recommend extends AppCompatActivity {
     }
 
     public void RecommendApriori(){
-        FirebaseDatabase database = ListRef.getDatabase();
 
         ListRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

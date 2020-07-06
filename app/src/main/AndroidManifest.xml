@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecommendationsActivity"></activity>
+        <activity android:name=".AddProductActivity"></activity>
+        <activity android:name=".RecommendationsActivity" />
         <activity android:name=".Recommend" />
         <activity
             android:name=".MenuActivity"
@@ -20,8 +21,6 @@
         <activity android:name=".ProductInfoActivity" />
         <activity android:name=".ShoppingListsActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".AdminCategoryActivity" />
-        <activity android:name=".AdminAddNewProductActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">
@@ -32,5 +31,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
